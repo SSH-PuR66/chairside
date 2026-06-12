@@ -1,0 +1,106 @@
+{
+    "name": "Appointment Reminders",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "hoursInterval": 1
+                        }
+                    ]
+                }
+            },
+            "name": "Hourly Check",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                0,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "documentId": "SCHEDULE_SHEET_ID",
+                "sheetName": "Appointments"
+            },
+            "name": "Get Appointments",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4,
+            "position": [
+                220,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "dateTime": [
+                        {
+                            "value1": "={{ $json.appointmentTime }}",
+                            "operation": "before",
+                            "value2": "={{ $now.plus(24, 'hours') }}"
+                        }
+                    ]
+                }
+            },
+            "name": "Due in 24h?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2,
+            "position": [
+                440,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "to": "={{ $json.phone }}",
+                "message": "Hi {{ $json.firstName }}, reminder: your dental appointment is tomorrow at {{ $json.appointmentTime }}. Reply C to confirm or R to reschedule."
+            },
+            "name": "Send SMS Reminder",
+            "type": "n8n-nodes-base.twilio",
+            "typeVersion": 1,
+            "position": [
+                660,
+                0
+            ]
+        }
+    ],
+    "connections": {
+        "Hourly Check": {
+            "main": [
+                [
+                    {
+                        "node": "Get Appointments",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Appointments": {
+            "main": [
+                [
+                    {
+                        "node": "Due in 24h?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Due in 24h?": {
+            "main": [
+                [
+                    {
+                        "node": "Send SMS Reminder",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

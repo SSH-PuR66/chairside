@@ -1,0 +1,88 @@
+{
+    "name": "New Patient Intake",
+    "nodes": [
+        {
+            "parameters": {
+                "path": "new-patient",
+                "httpMethod": "POST"
+            },
+            "name": "Intake Form Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                0,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "documentId": "PATIENT_SHEET_ID",
+                "sheetName": "Patients"
+            },
+            "name": "Add to Patient Sheet",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4,
+            "position": [
+                220,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "subject": "Welcome to the clinic, {{ $json.firstName }}!",
+                "toEmail": "={{ $json.email }}",
+                "text": "Hi {{ $json.firstName }},\n\nWe've received your intake form. Here's what to bring to your first visit..."
+            },
+            "name": "Send Welcome Email",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 2,
+            "position": [
+                440,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "channel": "#front-desk",
+                "text": "🦷 New patient: {{ $json.firstName }} {{ $json.lastName }} ({{ $json.phone }})"
+            },
+            "name": "Notify Front Desk",
+            "type": "n8n-nodes-base.slack",
+            "typeVersion": 2,
+            "position": [
+                440,
+                160
+            ]
+        }
+    ],
+    "connections": {
+        "Intake Form Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Add to Patient Sheet",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Add to Patient Sheet": {
+            "main": [
+                [
+                    {
+                        "node": "Send Welcome Email",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Notify Front Desk",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

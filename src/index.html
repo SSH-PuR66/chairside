@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowForge — We Automate Your Dental Practice's Busywork</title>
+  <meta name="description" content="Done-for-you automation for dental clinics. We eliminate hours of weekly manual work with monitored, self-hosted workflows." />
+
+  <!-- Favicon (inline SVG, no extra file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2305070d'/><path d='M28 55 L46 55 L40 78 L74 42 L54 42 L62 22 Z' fill='%232dd4bf'/></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FlowForge — Automation for Dental Practices" />
+  <meta property="og:description" content="Your front desk wastes 11 hours a week on copy-paste work. We fix that with monitored automations. Flat pricing, you own everything." />
+  <meta property="og:url" content="https://SSH-PuR66.github.io/flowforge/" />
+  <meta property="og:image" content="https://SSH-PuR66.github.io/flowforge/assets/og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FlowForge — Automation for Dental Practices" />
+  <meta name="twitter:description" content="We eliminate hours of weekly manual admin work. Flat pricing, monitored 24/7." />
+  <meta name="twitter:image" content="https://SSH-PuR66.github.io/flowforge/assets/og.png" />
+
+  <!-- Fonts: Outfit for headings, Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="aurora"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">Flow<span>Forge</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#pain">The Problem</a>
+        <a href="#packages">Packages</a>
+        <a href="#calculator">ROI Calculator</a>
+        <a href="#templates">Workflows</a>
+        <a href="#contact" class="btn btn-sm">Book a Free Audit</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container reveal">
+    <div class="pill">🦷 Built exclusively for dental clinics</div>
+    <h1>Your front desk wastes <span class="gradient-text" id="heroHours">11 hours</span> a week on copy-paste work.</h1>
+    <p>We build and monitor automations that move data between your practice software, spreadsheets, email, and invoicing — so your team never does it by hand again.</p>
+    <div class="hero-cta">
+      <a href="#calculator" class="btn btn-lg btn-glow">Calculate What It Costs You</a>
+      <a href="#contact" class="btn btn-lg btn-ghost">Book a Free Audit</a>
+    </div>
+    <p class="hero-trust">Flat pricing · No long contracts · You own everything we build</p>
+  </header>
+
+  <section id="pain" class="section container">
+    <h2 class="reveal">The work nobody became a dentist to do</h2>
+    <div class="grid-3">
+      <div class="card reveal" style="--d:0s">
+        <div class="card-icon">📋</div>
+        <h3>New patient intake</h3>
+        <p>Forms get re-typed into your practice software, then into a spreadsheet, then into email. Three times. Every patient.</p>
+      </div>
+      <div class="card reveal" style="--d:.1s">
+        <div class="card-icon">📅</div>
+        <h3>No-show chasing</h3>
+        <p>Staff manually texting reminders, rebooking cancellations, and updating the schedule. Hours per week, every week.</p>
+      </div>
+      <div class="card reveal" style="--d:.2s">
+        <div class="card-icon">🧾</div>
+        <h3>Friday invoice ritual</h3>
+        <p>Exporting the week's treatments, matching them to invoices, chasing unpaid balances. The 3-hour Friday everyone dreads.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculator" class="section section-alt">
+    <div class="container">
+      <h2 class="reveal">What is manual work costing you?</h2>
+      <p class="section-sub reveal">Drag the sliders. This is your money.</p>
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <label>
+            <span>Hours of manual admin per week: <strong id="hoursVal">10</strong></span>
+            <input type="range" id="hoursInput" min="2" max="40" value="10" />
+          </label>
+          <label>
+            <span>Average hourly cost of staff: <strong>$<span id="rateVal">25</span></span></strong>
+            <input type="range" id="rateInput" min="15" max="60" value="25" />
+          </label>
+          <label>
+            <span>% of that work we can automate: <strong><span id="pctVal">70</span>%</strong></span>
+            <input type="range" id="pctInput" min="30" max="90" value="70" />
+          </label>
+        </div>
+        <div class="calc-results">
+          <div class="calc-stat">
+            <span>You're currently burning</span>
+            <strong class="loss">$<span id="monthlyCost">0</span>/mo</strong>
+          </div>
+          <div class="calc-stat">
+            <span>With FlowForge you'd save</span>
+            <strong class="gain">$<span id="monthlySave">0</span>/mo</strong>
+          </div>
+          <div class="calc-stat">
+            <span>Net annual benefit after our fees</span>
+            <strong class="gain">$<span id="annualNet">0</span>/yr</strong>
+          </div>
+          <a href="#contact" class="btn btn-glow">Stop the Bleeding →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="section container">
+    <h2 class="reveal">Flat-rate packages. No hourly billing.</h2>
+    <p class="section-sub reveal">Setup once, then we monitor, fix, and improve your automations every month.</p>
+    <div class="pricing">
+      <div class="price-card reveal" style="--d:0s">
+        <h3>Starter</h3>
+        <div class="price">$1,500<span> setup</span></div>
+        <div class="price-mo">+ $300/mo care plan</div>
+        <ul>
+          <li>✓ 1 core workflow automated</li>
+          <li>✓ Self-hosted — you own it</li>
+          <li>✓ Monitoring & error alerts</li>
+          <li>✓ Monthly health report</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost" data-package="Starter">Start Here</a>
+      </div>
+      <div class="price-card featured reveal" style="--d:.1s">
+        <div class="badge">Most Popular</div>
+        <h3>Practice OS</h3>
+        <div class="price">$3,500<span> setup</span></div>
+        <div class="price-mo">+ $500/mo care plan</div>
+        <ul>
+          <li>✓ 3 workflows (intake, reminders, invoicing)</li>
+          <li>✓ Staff training session</li>
+          <li>✓ Priority same-day fixes</li>
+          <li>✓ Quarterly automation review</li>
+          <li>✓ 1 new workflow added per quarter</li>
+        </ul>
+        <a href="#contact" class="btn btn-glow" data-package="Practice OS">Automate My Practice</a>
+      </div>
+      <div class="price-card reveal" style="--d:.2s">
+        <h3>Multi-Location</h3>
+        <div class="price">Custom</div>
+        <div class="price-mo">from $800/mo</div>
+        <ul>
+          <li>✓ Unlimited workflows</li>
+          <li>✓ Cross-location reporting</li>
+          <li>✓ Dedicated automation engineer</li>
+          <li>✓ SLA-backed uptime</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost" data-package="Multi-Location">Talk to Us</a>
+      </div>
+    </div>
+    <p class="guarantee reveal">🛡️ <strong>The FlowForge Guarantee:</strong> if we don't save you at least 2x our monthly fee in staff time within 60 days, we work free until we do.</p>
+  </section>
+
+  <section class="section container" id="founding">
+    <div class="founding-card reveal">
+      <div class="pill">⏳ Limited to 3 practices</div>
+      <h2>Be a Founding Client</h2>
+      <p>We're new, and we're not going to show you fake reviews. Instead: the first three practices get <strong>50% off setup</strong>, direct access to the founder, and a written case study of their results — which means we're maximally motivated to make your numbers spectacular.</p>
+      <div class="founding-perks">
+        <div>💸 50% off setup fee</div>
+        <div>📞 Founder on speed dial</div>
+        <div>📈 Your savings, documented monthly</div>
+        <div>🛡️ 2x savings guarantee still applies</div>
+      </div>
+      <a href="#contact" class="btn btn-lg btn-glow" data-package="Founding Client">Claim a Founding Spot</a>
+      <span class="spots" id="spotsLeft">3 of 3 spots remaining</span>
+    </div>
+  </section>
+
+  <section id="templates" class="section section-alt">
+    <div class="container">
+      <h2 class="reveal">The three workflows that pay for everything</h2>
+      <p class="section-sub reveal">These templates ship in this repo. They're the foundation we customize for every clinic.</p>
+      <div class="grid-3">
+        <div class="card flow-card reveal" style="--d:0s">
+          <div class="flow-diagram">
+            <span class="node">📝 Form</span><span class="arrow">→</span>
+            <span class="node">🗂 CRM</span><span class="arrow">→</span>
+            <span class="node">📧 Welcome</span>
+          </div>
+          <h3>New Patient Intake</h3>
+          <p>Web form → patient record created → welcome email + intake checklist sent. Zero typing.</p>
+          <button class="chip" data-template="new-patient-intake">👁 Preview workflow</button>
+        </div>
+        <div class="card flow-card reveal" style="--d:.1s">
+          <div class="flow-diagram">
+            <span class="node">📅 Schedule</span><span class="arrow">→</span>
+            <span class="node">⏰ T-24h</span><span class="arrow">→</span>
+            <span class="node">💬 SMS</span>
+          </div>
+          <h3>Appointment Reminders</h3>
+          <p>Automatic SMS/email reminders 24h before, with one-tap confirm. Cuts no-shows dramatically.</p>
+          <button class="chip" data-template="appointment-reminders">👁 Preview workflow</button>
+        </div>
+        <div class="card flow-card reveal" style="--d:.2s">
+          <div class="flow-diagram">
+            <span class="node">📊 Sheet</span><span class="arrow">→</span>
+            <span class="node">🧾 Invoice</span><span class="arrow">→</span>
+            <span class="node">🔔 Alert</span>
+          </div>
+          <h3>Invoice Sync</h3>
+          <p>Weekly treatments auto-matched to invoices, unpaid balances flagged to the office manager. Friday ritual: deleted.</p>
+          <button class="chip" data-template="invoice-sync">👁 Preview workflow</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="process">
+    <h2 class="reveal">From audit to autopilot in 2 weeks</h2>
+    <div class="timeline">
+      <div class="t-step reveal" style="--d:0s"><div class="t-dot">1</div><div><h3>Free audit call (30 min)</h3><p>We map every repeated manual task in your practice and price the waste.</p></div></div>
+      <div class="t-step reveal" style="--d:.1s"><div class="t-dot">2</div><div><h3>Build week</h3><p>We deploy your self-hosted automation server and build your workflows.</p></div></div>
+      <div class="t-step reveal" style="--d:.2s"><div class="t-dot">3</div><div><h3>Test with your team</h3><p>Real data, real staff, real edge cases. We tune until it's invisible.</p></div></div>
+      <div class="t-step reveal" style="--d:.3s"><div class="t-dot">4</div><div><h3>Monitor forever</h3><p>We watch every run, fix failures before you notice, and report savings monthly.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="faq">
+    <div class="container narrow">
+      <h2 class="reveal">Questions clinics actually ask</h2>
+      <details class="faq-item reveal"><summary>Do we have to learn new software?</summary><p>No. Your team keeps using the tools they already use. The automation runs invisibly between them.</p></details>
+      <details class="faq-item reveal"><summary>What if an automation breaks?</summary><p>We get alerted the moment any workflow fails and fix it — usually before your staff would have noticed. That's what the monthly plan covers.</p></details>
+      <details class="faq-item reveal"><summary>Who owns the automations?</summary><p>You do. Everything runs on open-source software on infrastructure in your name. If you ever leave, it keeps working.</p></details>
+      <details class="faq-item reveal"><summary>Is patient data safe?</summary><p>Data flows directly between your own systems on your own server — it never passes through third-party automation clouds.</p></details>
+    </div>
+  </section>
+
+  <section id="contact" class="section container narrow">
+    <h2 class="reveal">Book your free automation audit</h2>
+    <p class="section-sub reveal">30 minutes. We'll show you exactly what to automate first — even if you don't hire us.</p>
+    <!-- Formspree endpoint: https://formspree.io/f/mpqeowyr -->
+    <form class="contact-form reveal" action="https://formspree.io/f/mpqeowyr" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="text" name="clinic" placeholder="Clinic name" required />
+      </div>
+      <input type="email" name="email" placeholder="Work email" required />
+      <input type="hidden" name="package" id="packageField" value="Not specified" />
+      <textarea name="message" rows="4" placeholder="What's your most annoying repeated task?" required></textarea>
+      <button type="submit" class="btn btn-lg btn-glow">Request My Free Audit</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 FlowForge · Automation for dental practices · <a href="#packages">Pricing</a> · <a href="https://github.com/SSH-PuR66" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/serg-rodriguez-453551275/" target="_blank" rel="noopener">LinkedIn</a></p>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <ol class="modal-steps" id="modalSteps"></ol>
+      <p class="modal-note">This runs on your own server — we set it up, monitor it, and your team never touches it. The template file is free if you want to build it yourself.</p>
+      <div class="modal-actions">
+        <a class="btn btn-glow" href="#contact" id="modalCta">Have us build this →</a>
+        <a class="chip" id="modalDownload" download>⬇ Download JSON (for techies)</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

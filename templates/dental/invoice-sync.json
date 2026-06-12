@@ -1,0 +1,134 @@
+{
+    "name": "Weekly Invoice Sync",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "weeks",
+                            "triggerAtDay": [
+                                5
+                            ],
+                            "triggerAtHour": 9
+                        }
+                    ]
+                }
+            },
+            "name": "Friday 9am",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                0,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "documentId": "TREATMENTS_SHEET_ID",
+                "sheetName": "ThisWeek"
+            },
+            "name": "Get Week's Treatments",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4,
+            "position": [
+                220,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "resource": "invoice",
+                "operation": "create"
+            },
+            "name": "Create Invoices",
+            "type": "n8n-nodes-base.quickbooks",
+            "typeVersion": 1,
+            "position": [
+                440,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{ $json.status }}",
+                            "operation": "equals",
+                            "value2": "unpaid"
+                        }
+                    ]
+                }
+            },
+            "name": "Unpaid?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2,
+            "position": [
+                660,
+                0
+            ]
+        },
+        {
+            "parameters": {
+                "subject": "⚠️ Unpaid balances this week",
+                "toEmail": "manager@clinic.com",
+                "text": "The following invoices are unpaid: {{ $json.invoiceList }}"
+            },
+            "name": "Alert Office Manager",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 2,
+            "position": [
+                880,
+                0
+            ]
+        }
+    ],
+    "connections": {
+        "Friday 9am": {
+            "main": [
+                [
+                    {
+                        "node": "Get Week's Treatments",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Week's Treatments": {
+            "main": [
+                [
+                    {
+                        "node": "Create Invoices",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create Invoices": {
+            "main": [
+                [
+                    {
+                        "node": "Unpaid?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Unpaid?": {
+            "main": [
+                [
+                    {
+                        "node": "Alert Office Manager",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

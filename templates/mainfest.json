@@ -1,0 +1,25 @@
+{
+    "niches": [
+        {
+            "id": "dental",
+            "name": "Dental Clinics",
+            "templates": [
+                {
+                    "file": "dental/new-patient-intake.json",
+                    "name": "New Patient Intake",
+                    "estSavedHoursWeekly": 4
+                },
+                {
+                    "file": "dental/appointment-reminders.json",
+                    "name": "Appointment Reminders",
+                    "estSavedHoursWeekly": 3
+                },
+                {
+                    "file": "dental/invoice-sync.json",
+                    "name": "Weekly Invoice Sync",
+                    "estSavedHoursWeekly": 3
+                }
+            ]
+        }
+    ]
+}
